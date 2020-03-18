@@ -1,9 +1,9 @@
-exports.generateText = (name, age) => {
+function generateText(name, age) {
   // Returns output text
   return `${name} (${age} years old)`;
 };
 
-exports.createElement = (type, text, className) => {
+function createElement(type, text, className) {
   // Creates a new HTML element and returns it
   const newElement = document.createElement(type);
   newElement.classList.add(className);
@@ -11,7 +11,7 @@ exports.createElement = (type, text, className) => {
   return newElement;
 };
 
-exports.validateInput = (text, notEmpty, isNumber) => {
+function validateInput(text, notEmpty, isNumber) {
   // Validate user input with two pre-defined rules
   if (!text) {
     return false;
@@ -24,3 +24,20 @@ exports.validateInput = (text, notEmpty, isNumber) => {
   }
   return true;
 };
+
+function checkAndGenerate(name, age) { 
+  if (
+    !validateInput(name, true, false) ||
+    !validateInput(age, false, true)
+  ) {
+    return false;
+  }
+
+  return generateText(name, age);
+};
+
+// TODO: move this into a module and then just export that module only.
+exports.generateText = generateText;
+exports.createElement = createElement;
+exports.validateInput = validateInput;
+exports.checkAndGenerate = checkAndGenerate;
